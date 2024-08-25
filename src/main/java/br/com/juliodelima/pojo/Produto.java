@@ -1,12 +1,22 @@
 package br.com.juliodelima.pojo;
 
+import java.util.List;
+
+import br.com.juliodelima.enums.Tamanho;
+
 public class Produto {
 
 	private String nome;
 	private String marca;
-	private double valor;
-	private String tamanho;
-	private String itensInclusos;
+	protected double valor;
+	private Tamanho tamanho;
+	private List<ItemAdicional> itensInclusos;
+	
+	public Produto(String novoNome, String novaMarca, Tamanho novoTamanho) {
+		this.nome = novoNome;
+		this.marca = novaMarca;
+		this.tamanho = novoTamanho;
+	}
 	
 	
 	// Valor
@@ -15,7 +25,12 @@ public class Produto {
 	}
 	
 	public void setValor(double novoValor) {
-		this.valor = novoValor;
+		if(novoValor > 0) {
+			this.valor = novoValor;
+		}
+		else {
+			throw new IllegalArgumentException("Valores  devem ser maior que 0");
+		}
 	}
 
 	// Nome
@@ -36,21 +51,21 @@ public class Produto {
 		this.marca = novaMarca;
 	}
 
-	// Marca
-	public String getTamanho() {
+	// Tamanho
+	public Tamanho getTamanho() {
 		return tamanho;
 	}
 
-	public void setTamanho(String novoTamanho) {
+	public void setTamanho(Tamanho novoTamanho) {
 		this.tamanho = novoTamanho;
 	}
 
 	// Itens Inclusos
-	public String getItensInclusos() {
+	public List<ItemAdicional> getItensInclusos() {
 		return itensInclusos;
 	}
 
-	public void setItensInclusos(String novoItem) {
+	public void setItensInclusos(List<ItemAdicional> novoItem) {
 		this.itensInclusos = novoItem;
 	}
 	
